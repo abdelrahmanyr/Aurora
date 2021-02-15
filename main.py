@@ -1,7 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import kivy
-import pytube
+from pytube import YouTube
 from youtubesearchpython import VideosSearch
 import moviepy.editor as mp
 import os
@@ -35,5 +35,5 @@ yt_track.download(filename = f"{track_name} - {track_artist}")
 clip = mp.VideoFileClip(f"{yt_track.title}.mp4")
 clip.audio.write_audiofile(f"{yt_track.title}.mp3")
 clip.close()
-os.remove("Donnie Darko - Mad World.mp4")
+os.remove(f"{yt_track.title}.mp4")
 
