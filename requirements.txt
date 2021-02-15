@@ -1,3 +1,4 @@
 kivy
 spotipy
 pytube
+youtube-search-python
