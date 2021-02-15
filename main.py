@@ -3,6 +3,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import kivy
 import pytube
 from youtubesearchpython import VideosSearch
+import moviepy.editor as mp
+import os
 import eyeD3 #We will use that later
 
 #Defining spotify credentials (ignore it)
@@ -27,4 +29,11 @@ result = VideosSearch(f"{track_name} - {track_artist}", limit = 1).result()
 link = result['result'][0]['link'] #Now use this one to download the track with pytube
 
 #Your Turn !!!
+yt_track = YouTube(link).streams.filter().first()
+yt_track.download(filename = f"{track_name} - {track_artist}")
+
+clip = mp.VideoFileClip(f"{yt_track.title}.mp4")
+clip.audio.write_audiofile(f"{yt_track.title}.mp3")
+clip.close()
+os.remove("Donnie Darko - Mad World.mp4")
 
