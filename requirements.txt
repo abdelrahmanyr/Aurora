@@ -2,3 +2,5 @@ kivy
 spotipy
 pytube
 youtube-search-python
+eyeD3
+python-magic-bin

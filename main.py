@@ -2,19 +2,19 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import kivy
 import pytube
+from youtubesearchpython import VideosSearch
+import eyeD3 #We will use that later
 
-#Defining spotify credentials
+#Defining spotify credentials (ignore it)
 st = "67587c0f933aa8ab2e59377a14d0d315"
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id = "4d35b62383e543679384be5c9ff3fd6a",
                                                            client_secret = "100c64fa520d4f98969c5b1bfdd92e46",))
 
-#Giving the track name, album name, artist and album cover
-track = input("Type the track URL to search within Youtube")
-results_s = sp.search(q={track}, type='track')
-items = results_s['tracks']['items']
+#Giving the track name, album name, artist and album cover (ignore it too)
+track_id = input("Please type a Spotify track URL or ID:\n")
 try:
-    track = items[0]
-except IndexError:
+    track = sp.track(track_id)
+except spotipy.exceptions.SpotifyException:
     print("Sorry I couldn't find any results")
 track_name = track['name']
 track_url = str(track['external_urls']['spotify'])
@@ -23,4 +23,8 @@ track_artist = track['album']['artists'][0]['name']
 album_cover = track['album']['images'][0]['url']
 
 #Now search YouTube for the song with `"track_name - track_artist"` and download it as an MP3 file
+result = VideosSearch(f"{track_name} - {track_artist}", limit = 1).result()
+link = result['result'][0]['link'] #Now use this one to download the track with pytube
+
+#Your Turn !!!
 
