@@ -5,10 +5,8 @@ from moviepy.editor import *
 import os
 
 p = Playlist(input("Enter playlist url: "))
-# playlist link is "https://www.youtube.com/playlist?list=PLJjm6SwbZK3l4UvoSd42hFg9PQ9Tl2Rhr"
 
 
-#print(f'Downloading: {p.title}')
 print ("Downloading: "+p.title)
 
 
@@ -27,12 +25,5 @@ for video in p.videos:
     os.remove(video.title+'.mp4')
 
 
-    #print (p.title[])
-
-'''
-for url in p.video_urls[:4]:
-    print (url)
-'''
 print('Number of videos in playlist: %s' % len(p.video_urls))
-#x = (p.video_urls)
 
